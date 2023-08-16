@@ -1,0 +1,5 @@
+- Warum brauchen wir Java?
+- Was ist Firebase?
+- Welche zwei Geschäfstteile hat Firebase? (auf der website sind es drei)
+- Was ist serverless?
+- Firebase vs. Traditionell
