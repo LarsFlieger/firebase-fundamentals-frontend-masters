@@ -15,3 +15,8 @@
 - Firebase has auth Anonymous (which is a guest user which can be linked to a profile later)
 
 - Firebase Ids oder so wenn man `doc(collection)` called werden client side generiert
+
+- Firebase Services
+- Firebase SDK
+- Firebase CLI
+- Staging State
