@@ -113,6 +113,11 @@
 
   - Integrated tests sind manchmal besser weil dann die unit tests nicht komplett geändert werden müssen
 
-- Cloud functions (serverless and event driven)
+- Cloud functions (serverless and event driven) (v2)
   - allows you write server code in events within firebase
   - action in client, trigger event on the server
+  - Functions are trusted environment, you can use Admin SDK (service account)
+  - Cold start (time it takes to run your code)
+  - do not use deps or modules that much (reduces cold start)
+  - min instances (will life without coldstart, but pay them)
+  - Has caching with ssr
