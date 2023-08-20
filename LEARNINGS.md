@@ -58,3 +58,9 @@
   - will work with multiple tabs offline in realtime
 
 - hasPendingWrite will tell you if it's synced with the server
+
+- simple and composite queries
+- Goal from firebase: all queries super fast (document scan will not increase with the amount of documents)
+- simple query
+  - operate on one field
+  - several operators: "==", "in", "not-in", "user.city", "=<", "=>", "!=", orderBy
