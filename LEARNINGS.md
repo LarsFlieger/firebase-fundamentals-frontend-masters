@@ -83,3 +83,7 @@
 
 - use Hierarchy to find data / query data
 - `collectionGroup` will use also root (will use all collection ids)
+
+- Atomicity
+  - if one operation fails, rollback the entire process.
+  - Firebase: Batch writes and transactions
