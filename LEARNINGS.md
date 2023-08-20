@@ -73,3 +73,13 @@
 - `array-contains` and `array-contains-any`map query
 
 - Range Queries & Cursoring (for pagination)
+
+- Join query
+
+  - put data into the fetch when data is not changing much
+
+- Denormalization
+- Normalization
+
+- use Hierarchy to find data / query data
+- `collectionGroup` will use also root (will use all collection ids)
