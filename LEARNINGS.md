@@ -85,5 +85,15 @@
 - `collectionGroup` will use also root (will use all collection ids)
 
 - Atomicity
+
   - if one operation fails, rollback the entire process.
   - Firebase: Batch writes and transactions
+
+- Firebase Authentication
+
+  - Serverless fully managed
+
+- Authentication (Who?)
+- Authorization (What they can do?)
+
+- do not await the auth methods
