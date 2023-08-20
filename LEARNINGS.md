@@ -7,8 +7,9 @@
 - JAMStack works great with serverless
 - JAMStack try to make everything simple as possible, trying to do stuff static as much as possible
 
-- Firebase latency compensation Feature, In Firebase never:
+- Firebase latency compensation / optimistic concurrency control Feature, In Firebase never:
 
+  - we will assume something will work, and will revert it if it's failed. but we do not await for the sucess
   - Update your state after setDoc
   - Firebase will trigger get operiations when data changes in frontend
 
@@ -48,3 +49,12 @@
 - setDoc -> set data
 - updateDoc -> merge only if exists
 - setDoc with merge: true -> combined // <= recommended in most cases
+
+- `serverTimestamp()` set server time
+- `increment()` will increment a number, also `decrement()`
+
+- enable multi tab persisence
+
+  - will work with multiple tabs offline in realtime
+
+- hasPendingWrite will tell you if it's synced with the server
