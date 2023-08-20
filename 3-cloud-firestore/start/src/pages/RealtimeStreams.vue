@@ -23,10 +23,24 @@ function bindToTable(expensesQuery) {
 
 function bindToState(state, query, transform = formatUser) {
   // 1. Create a realtime listener
+  onSnapshot(usersCol, (snapshot) => {
+    state.results = snapshot.docs.map(formatUser)
+  });
 }
 
 function formatUser(docSnapshot) {
   // 2. Transform the object returned
+  const { uid, first, last, highscore, city } = docSnapshot.data();
+  const { fromCache } = docSnapshot.metadata;
+  console.log(docSnapshot.metadata)
+  return {
+    uid,
+    first,
+    last,
+    highscore,
+    city,
+    fromCache
+  }
 }
 </script>
 

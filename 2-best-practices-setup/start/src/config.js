@@ -1,11 +1,10 @@
 export const config = {
   firebase: {
-    apiKey: "AIzaSyC0Mlrdz63rpJsUfgJdCXEhZIuJt3LLzMU",
-    authDomain: "frontend-masters-firebase.firebaseapp.com",
-    projectId: "frontend-masters-firebase",
-    storageBucket: "frontend-masters-firebase.appspot.com",
-    messagingSenderId: "66563583985",
-    appId: "1:66563583985:web:e5982c7fe56bf0387d1e50",
-    measurementId: "G-FS54PL4KVB"
+    apiKey: "AIzaSyAu_HpV_8rKBKGl8cAQfthhE3GAbce7Evo",
+    authDomain: "markdown-me-deb7f.firebaseapp.com",
+    projectId: "markdown-me-deb7f",
+    storageBucket: "markdown-me-deb7f.appspot.com",
+    messagingSenderId: "1032934302349",
+    appId: "1:1032934302349:web:f0c34470ca284a354478c4"
   },
 };

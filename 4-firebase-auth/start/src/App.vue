@@ -15,7 +15,7 @@ import {
 } from "firebase/auth";
 import { getDocs, collection, query, where } from 'firebase/firestore';
 
-const { auth } = getFirebase();
+const { auth, firestore } = getFirebase();
 const state = reactive({ expenses: [] });
 
 function getFormDetails(event) {
@@ -28,28 +28,45 @@ function getFormDetails(event) {
 async function signIn(event) {
   event.preventDefault();
   const { email, password } = getFormDetails(event);
-
+  signInWithEmailAndPassword(auth, email, password)
 }
 
 async function createAccount(event) {
   event.preventDefault();
   const { email, password } = getFormDetails(event);  
-
+  createUserWithEmailAndPassword(auth, email, password)
 }
 
 function linkWithGoogle() {
+  linkWithRedirect(auth.currentUser, new GoogleAuthProvider());
 }
 
 function signInGoogle() {
-
+  signInWithRedirect(auth, new GoogleAuthProvider());
 }
 
 function signUserOut() {
-
+  signOut(auth);
 }
 
 onMounted(async () => {
   // Get the user's expenses
+  try {
+    const redirectResult = await getRedirectResult(auth)
+    console.log({ redirectResult})
+  } catch(errors) {
+    console.log(errors);
+  }
+
+  onAuthStateChanged(auth, async user => {
+    state.user = user;
+    const userQuery = query(
+      collection(firestore, "expenses"),
+      where("uid", "==", user.uid)
+    )
+    state.expenses = await getDocs(userQuery)
+    state.expenses = state.expenses.docs.map(doc => ({text: doc.data().cost}))
+  })
 });
 
 onBeforeUnmount(() => {
@@ -106,7 +123,7 @@ onBeforeUnmount(() => {
         </li>
       </ol>
     </div>
-
+  
   </main>
 </template>
 

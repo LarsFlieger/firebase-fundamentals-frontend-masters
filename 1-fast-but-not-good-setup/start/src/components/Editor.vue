@@ -2,19 +2,32 @@
 import { onMounted, reactive } from 'vue';
 import { useRoute } from 'vue-router'
 import { snarkdownEnhanced as snarkdown } from '../util';
+import { initializeApp } from "firebase/app"
+import { config } from "../config"
+import { getFirestore, collection, onSnapshot, doc, setDoc } from "firebase/firestore"
+
+const firebaseApp = initializeApp(config.firebase);
+const firestore = getFirestore(firebaseApp);
+const markdownsCollection = collection(firestore, "markdowns")
 
 const route = useRoute();
+const markdownDocument = doc(markdownsCollection, route.params.id)
+
 const state = reactive({ });
 onMounted(() => {
 
+  onSnapshot(markdownDocument, snapshot => {
+    const data = snapshot.data()
+    state.converted = data.converted;
+    state.markdown = data.markdown;
+  })
 })
 
 function convert(event) {
   const markdown = event.target.value;
   const converted = snarkdown(markdown);
-  state.converted = converted;
+  setDoc(markdownDocument, { converted, markdown })
 }
-
 </script>
 
 <template>

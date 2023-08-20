@@ -7,7 +7,8 @@ const firebaseApp = initializeApp(functions.config().firebase);
 
 // 1. Return a webpage with the current date, set a CDN cache for an hour
 exports.ssr = functions.https.onRequest((request, response) => {
-  
+  response.set("Cache-Control", "public, max-age=500, s-maxage=1000");
+  response.send(`<h1>${Date.now()}</h1>`);
 });
 
 // 2. When a user updates their info, copy it across their expenses 

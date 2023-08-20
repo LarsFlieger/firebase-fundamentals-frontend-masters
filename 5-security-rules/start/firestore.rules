@@ -1,8 +1,41 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /{document=**} {
-      allow read, write: if true;
+
+    // Guard
+    function isUserOwned(uid) {
+      return request.auth.uid == uid;
+    }
+
+    // DTO Validation
+    function isUserObject() {
+      return request.resource.data.keys().hasAll([
+        "first",
+        "email"
+      ])
+    }
+
+    function costsMoreThanZero() {
+      return request.resource.data.cost is number &&
+            request.resource.data.cost > 0;
+    }
+    
+    function isCollaborator() {
+      return get(/databases/$(database)/documents/admin/$(request.auth.uid)).role in ['admin', 'collaborator'];
+    }
+
+    match /users/{uid} {
+      allow read: if isUserOwned(uid);
+      allow write: if isUserOwned(uid) && isUserObject();
+    }
+
+    match /expenses/{expenseId} {
+      allow read: if isUserOwned(resource.data.uid);
+      allow write: if isUserOwned(resource.data.uid) && costsMoreThanZero();
+    }
+
+    match /budgets/{budgetId} {
+      allow read: if isCollaborator(); 
     }
   }
 }

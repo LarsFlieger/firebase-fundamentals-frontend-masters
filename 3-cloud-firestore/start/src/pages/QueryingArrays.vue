@@ -11,9 +11,10 @@ let expensesQuery = null;
 // // 1. Get the first 100 categories that are categorized as 'fun' AND 'kids'
 
 // // 2. Get the first 25 categories that are categorized as ONLY 'fun' OR 'kids'
-// expensesQuery = query(
-
-// );
+expensesQuery = query(
+  expensesCol,
+  
+);
 
 // // 3. Get the first 10 categories that contain the 'fun' category
 // expensesQuery = query(

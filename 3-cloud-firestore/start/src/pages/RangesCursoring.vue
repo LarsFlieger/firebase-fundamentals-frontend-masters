@@ -10,13 +10,21 @@ let expensesQuery = null;
 
 // // 1. Get the first 20 categories in 2022
 // expensesQuery = query(
-
+//   expensesCol,
+//   orderBy('date'),
+//   startAt(new Date('1/1/2022')),
+//   limit(20),
 // );
 
 // // 2. Get the first 20 expenses the contain the category of 'transportation' or 'housing'
 // // that cost between $100 and $120
 // expensesQuery = query(
-
+//   expensesCol,
+//   orderBy("cost"),
+//   startAt(100),
+//   endAt(120),
+//   where('categories', 'array-contains-any', ['transportation', 'housing']),
+//   limit(20),
 // );
 
 // // 3. Get the last 10 expenses that contain the category of 'food'
@@ -29,17 +37,27 @@ let expensesQuery = null;
 // // that cost between 100 and 200 then get the next 10
 
 // // Step 1: First query to begin the range
-// const firstQuery = query(
-
-// );
+const firstQuery = query(
+  expensesCol,
+  orderBy("cost"),
+  startAt(100),
+  endAt(120),
+  limit(10),
+);
 
 // // Step 2: Second query, imagine the user clicks a 'next page' button
-// const results = await getDocs(firstQuery);
-// const lastDoc = results.docs.at(results.length);
-
-// expensesQuery = query(
-
-// );
+const results = await getDocs(firstQuery);
+console.log({ results });
+const lastDoc = results.docs.at(results.size - 1);
+console.log(results.docs.map(d => d.data()));
+console.log({ lastDoc: lastDoc.data()})
+expensesQuery = query(
+  expensesCol,
+  orderBy("cost"),
+  startAfter(lastDoc),
+  endAt(120),
+  limit(10),
+);
 
 const state = bindToTable(expensesQuery)
 

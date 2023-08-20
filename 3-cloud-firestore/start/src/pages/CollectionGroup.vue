@@ -8,15 +8,19 @@ const { firestore } = getFirebase();
 const expensesCol = collection(firestore, 'expenses');
 let expensesQuery = null;
 
+let expesnesGroup = collectionGroup(firestore, 'child');
 // // 1. Get the first 100 expenses across all users that are under $100
 // expensesQuery = query(
-
+//   expesnesGroup,
+//   limit(100),
+//   where('cost', '<', 100),
 // );
 
 // // 2. Get the first 100 expenses across all users from any date range
-// expensesQuery = query(
-
-// );
+expensesQuery = query(
+  expesnesGroup,
+  limit(100),
+);
 
 
 const state = bindToTable(expensesQuery)
@@ -43,10 +47,12 @@ function bindToState(state, query, transform) {
 }
 
 function formatExpense(snapshot, d) {
-  const { uid, cost, categories, date: rawDate } = d.data();
+  const { uid, date: rawDate, example } = d.data();
+  const categories = ["t"]
   const dateConfig = { day: '2-digit', month: '2-digit', year: 'numeric' };
-  const date = new Intl.DateTimeFormat('en', dateConfig).format(rawDate.toDate());
+  const date = new Intl.DateTimeFormat('en', dateConfig).format(Date.now());
   const { fromCache } = snapshot.metadata;
+  const cost = example
   return { uid, cost, categories: categories.join(', ') , fromCache, date };
 }
 </script>
