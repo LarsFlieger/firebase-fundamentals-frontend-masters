@@ -78,7 +78,7 @@
 
   - put data into the fetch when data is not changing much
 
-- Denormalization
+- Denormalization // LEARNING
 - Normalization
 
 - use Hierarchy to find data / query data
@@ -97,3 +97,12 @@
 - Authorization (What they can do?)
 
 - do not await the auth methods
+
+- Security Rules
+  - Centralized (only at one place) // LEARNING
+  - Security at multiple points can be difficult (client side validation is not security)
+  - Custom language (to be as fast as possible)
+  - Matching
+  - Document level matching (collections can be protected using wildcards)
+  - How to ensure if they work? Rules Playground, Tests
+  - Rules can be put into own files and tested (recommended way)
