@@ -99,6 +99,7 @@
 - do not await the auth methods
 
 - Security Rules
+
   - Centralized (only at one place) // LEARNING
   - Security at multiple points can be difficult (client side validation is not security)
   - Custom language (to be as fast as possible)
@@ -106,3 +107,11 @@
   - Document level matching (collections can be protected using wildcards)
   - How to ensure if they work? Rules Playground, Tests
   - Rules can be put into own files and tested (recommended way)
+  - You can get data from your firestore
+
+- Testing
+
+  - Integrated tests sind manchmal besser weil dann die unit tests nicht komplett geändert werden müssen
+
+- Cloud functions (serverless and event driven)
+  - allows you write server code in events within firebase
