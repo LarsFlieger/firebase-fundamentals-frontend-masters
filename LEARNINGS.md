@@ -115,3 +115,4 @@
 
 - Cloud functions (serverless and event driven)
   - allows you write server code in events within firebase
+  - action in client, trigger event on the server
