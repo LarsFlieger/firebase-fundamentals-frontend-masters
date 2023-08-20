@@ -71,3 +71,5 @@
 
 - auto generated ids are not ordered (random order)
 - `array-contains` and `array-contains-any`map query
+
+- Range Queries & Cursoring (for pagination)
