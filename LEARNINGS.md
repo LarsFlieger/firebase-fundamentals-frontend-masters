@@ -64,3 +64,10 @@
 - simple query
   - operate on one field
   - several operators: "==", "in", "not-in", "user.city", "=<", "=>", "!=", orderBy
+- composite queries (composite indexes)
+
+  - require to set index in production (emulator it works)
+  - sort with combined fields
+
+- auto generated ids are not ordered (random order)
+- `array-contains` and `array-contains-any`map query
